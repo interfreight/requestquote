@@ -177,7 +177,7 @@ textarea:focus{
     <h2>Request for Freight Quotation</h2>
 </div>
 
-<div class="form-section">
+<form id="quotationForm" class="form-section">
 
 <h3 class="section-title">Company Information</h3>
 
@@ -185,12 +185,12 @@ textarea:focus{
 
     <div class="form-group">
         <label>Company *</label>
-        <input type="text">
+       <input type="text" id="company" required>
     </div>
 
     <div class="form-group">
         <label>Title</label>
-        <select>
+     <select id="title">
             <option>Mr.</option>
             <option>Ms.</option>
             <option>Mrs.</option>
@@ -199,22 +199,22 @@ textarea:focus{
 
     <div class="form-group">
         <label>Contact Person *</label>
-        <input type="text">
+      <input type="text" id="contactPerson" required>
     </div>
 
     <div class="form-group">
         <label>Mobile Number *</label>
-        <input type="text">
+       <input type="text" id="mobileNumber" required>
     </div>
 
     <div class="form-group">
         <label>Email *</label>
-        <input type="email">
+       <input type="email" id="email" required>
     </div>
 
     <div class="form-group">
         <label>Preferred Contact Method</label>
-        <select>
+<select id="contactMethod">
             <option>Phone Call</option>
             <option>WhatsApp</option>
             <option>Email</option>
@@ -229,16 +229,17 @@ textarea:focus{
 
 <div class="checkbox-grid">
 
-    <label><input type="checkbox"> Sea Freight (LCL & FCL)</label>
-    <label><input type="checkbox"> Air Freight</label>
-    <label><input type="checkbox"> RoRo Services</label>
-    <label><input type="checkbox"> Custom Brokerage</label>
-    <label><input type="checkbox"> Warehouse & Distribution</label>
-    <label><input type="checkbox"> Land Transport</label>
-    <label><input type="checkbox"> Relocation Services</label>
-    <label><input type="checkbox"> Project Cargo / OOG Cargo</label>
-    <label><input type="checkbox"> Used Container Purchases</label>
-    <label><input type="checkbox"> Marine Insurance</label>
+    <label> <input type="checkbox" class="service" value="Sea Freight (LCL & FCL)"> Sea Freight (LCL & FCL) </label>
+    <label> <input type="checkbox" class="service" value="Air Freight"> Air Freight </label>
+    <label> <input type="checkbox" class="service" value="RoRo Services"> RoRo Services </label>
+    <label> <input type="checkbox" class="service" value="Custom Brokerage"> Custom Brokerage</label>
+       <label> <input type="checkbox" class="service" value=" Warehouse & Distribution"> Warehouse & Distribution</label>
+       <label> <input type="checkbox" class="service" value="Land Transport">Land Transport</label>
+       <label> <input type="checkbox" class="service" value="Relocation Services">Relocation Services</label>
+       <label> <input type="checkbox" class="service" value="Project Cargo / OOG Cargo">Project Cargo / OOG Cargo</label>
+       <label> <input type="checkbox" class="service" value="Used Container Purchases">Used Container Purchases</label>
+       <label> <input type="checkbox" class="service" value=" Marine Insurance"> Marine Insurance</label>
+
 
 </div>
 
@@ -250,7 +251,7 @@ textarea:focus{
 
     <div class="form-group">
         <label>Shipment Type</label>
-        <select>
+  <select id="shipmentType">
             <option value="">Select Type</option>
             <option>Import</option>
             <option>Export</option>
@@ -289,12 +290,12 @@ textarea:focus{
 
 <div class="form-group" id="shipmentOtherBox" style="display:none;">
     <label>Specify Shipment Details</label>
-    <input type="text" placeholder="Enter details">
+   <input type="text" id="shipmentOther" placeholder="Enter details">
 </div>
 
 <div class="form-group" id="commodityOtherBox" style="display:none;">
     <label>Specify Commodity</label>
-    <input type="text" placeholder="Enter commodity">
+   <input type="text" id="commodityOther" placeholder="Enter commodity">
 </div>
 
 <br>
@@ -303,7 +304,7 @@ textarea:focus{
 
     <div class="form-group">
         <label>Incoterms</label>
-        <select>
+      <select id="incoterms">
             <option>EXW</option>
             <option>FOB</option>
             <option>CIF</option>
@@ -318,21 +319,23 @@ textarea:focus{
 
 <div class="form-group">
     <label>Other Services</label>
-    <textarea rows="3"></textarea>
+   <textarea rows="3" id="otherServices"></textarea>
 </div>
 
 <div class="form-group">
     <label>Remark Message</label>
-    <textarea rows="5"></textarea>
+   <textarea rows="5" id="remarkMessage"></textarea>
 </div>
 
 <div class="submit-area">
-    <button class="submit-btn">
+   <button type="submit" class="submit-btn">
         Submit Quotation Request
     </button>
 </div>
 
 </div>
+
+</form>
 
 <div class="footer-note">
     © 2026 Interfreight Group. All Rights Reserved.
@@ -415,6 +418,61 @@ commoditySelect.addEventListener("change", function(){
 });
 
 </script>
+<script>
+const WEBAPP_URL =
+"https://script.google.com/macros/s/AKfycbzPM6kphW2vCZX2qFuWIwYIwJ7rcPXjSODPeC9P7lzb-w5s5hWIe9ScEET3SsRJ8animQ/exec";
 
+document.getElementById("quotationForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const services = [];
+
+    document.querySelectorAll(".service:checked").forEach(item=>{
+        services.push(item.value);
+    });
+
+    const data = {
+        company: document.getElementById("company").value,
+        title: document.getElementById("title").value,
+        contactPerson: document.getElementById("contactPerson").value,
+        mobileNumber: document.getElementById("mobileNumber").value,
+        email: document.getElementById("email").value,
+        contactMethod: document.getElementById("contactMethod").value,
+        services: services.join(", "),
+        shipmentType: document.getElementById("shipmentType").value,
+        shipmentMode: document.getElementById("shipmentMode").value,
+        shipmentOption: document.getElementById("shipmentOption").value,
+        shipmentOther: document.getElementById("shipmentOther").value,
+        commodity: document.getElementById("commoditySelect").value,
+        commodityOther: document.getElementById("commodityOther").value,
+        incoterms: document.getElementById("incoterms").value,
+        otherServices: document.getElementById("otherServices").value,
+        remarkMessage: document.getElementById("remarkMessage").value
+    };
+
+    try {
+
+        const response = await fetch(WEBAPP_URL,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(data)
+        });
+
+        if(response.ok){
+            alert("Quotation Request Submitted Successfully!");
+            document.getElementById("quotationForm").reset();
+        } else {
+            alert("Submission Failed");
+        }
+
+    } catch(error){
+        console.error(error);
+        alert("Submission Failed");
+    }
+});
+</script>
 </body>
 </html>
