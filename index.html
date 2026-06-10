@@ -3,502 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interfreight - Request for Freight Quotation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Interfreight IT System</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
-    background:#f5f7fa;
-    color:#333;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0D3B66,#1E5FA8);
 }
 
-/* HERO */
-.hero{
-    background:
-    linear-gradient(
-    rgba(13,59,102,.88),
-    rgba(13,59,102,.88)
-    ),
-    url('cargo-background.jpg');
-
-    background-size:cover;
-    background-position:center;
-    color:white;
-    text-align:center;
-    padding:60px 20px;
+.login-box{
+background:white;
+width:380px;
+padding:35px;
+border-radius:15px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
 }
 
-.hero img{
-    width:140px;
-    margin-bottom:15px;
+.logo{
+text-align:center;
+margin-bottom:20px;
 }
 
-.hero h1{
-    font-size:40px;
-    margin-bottom:10px;
+.logo h2{
+color:#0D3B66;
 }
 
-.hero p{
-    font-size:18px;
-    opacity:.95;
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:8px;
 }
 
-/* CONTAINER */
-.container{
-    max-width:1100px;
-    margin:-40px auto 50px;
-    background:#fff;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 20px 50px rgba(0,0,0,.12);
+button{
+width:100%;
+padding:12px;
+border:none;
+background:#0D3B66;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
 }
 
-/* HEADER */
-.form-header{
-    background:#0D3B66;
-    color:#fff;
-    padding:25px;
+button:hover{
+background:#16528e;
 }
 
-.form-header h2{
-    font-size:24px;
+.error{
+margin-top:10px;
+color:red;
+text-align:center;
 }
 
-/* FORM */
-.form-section{
-    padding:35px;
-}
-
-.section-title{
-    color:#0D3B66;
-    margin-bottom:20px;
-    border-left:5px solid #F4C430;
-    padding-left:12px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-}
-
-.form-group{
-    margin-bottom:18px;
-}
-
-label{
-    display:block;
-    margin-bottom:6px;
-    font-weight:600;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #d8d8d8;
-    border-radius:8px;
-    transition:.3s;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    outline:none;
-    border-color:#3D73C9;
-    box-shadow:0 0 0 3px rgba(61,115,201,.15);
-}
-
-.checkbox-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:10px;
-}
-
-.checkbox-grid label{
-    font-weight:400;
-}
-
-.submit-area{
-    text-align:center;
-    margin-top:30px;
-}
-
-.submit-btn{
-    background:#0D3B66;
-    color:white;
-    border:none;
-    padding:15px 40px;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.submit-btn:hover{
-    background:#3D73C9;
-}
-
-.footer-note{
-    background:#f9fafb;
-    padding:20px;
-    text-align:center;
-    color:#666;
-    font-size:14px;
+.success{
+margin-top:10px;
+color:green;
+text-align:center;
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
-<section class="hero">
-    <img src="3. INTERFREIGHT COMPANY LOGO.png" alt="Interfreight Logo">
-    <h1>INTERFREIGHT GROUP</h1>
-    <p>
-        Sea Freight • Air Freight • Customs Brokerage •
-        Warehousing • Land Transport
-    </p>
-</section>
+<div class="login-box">
 
-<div class="container">
-
-<div class="form-header">
-    <h2>Request for Freight Quotation</h2>
+<div class="logo">
+<h2>INTERFREIGHT IT SYSTEM</h2>
+<p>User Login</p>
 </div>
 
-<form id="quotationForm" class="form-section">
+<input type="text" id="username" placeholder="Username">
 
-<h3 class="section-title">Company Information</h3>
+<input type="password" id="password" placeholder="Password">
 
-<div class="grid">
+<button onclick="login()">Login</button>
 
-    <div class="form-group">
-        <label>Company *</label>
-       <input type="text" id="company" required>
-    </div>
-
-    <div class="form-group">
-        <label>Title</label>
-     <select id="title">
-            <option>Mr.</option>
-            <option>Ms.</option>
-            <option>Mrs.</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Contact Person *</label>
-      <input type="text" id="contactPerson" required>
-    </div>
-
-    <div class="form-group">
-        <label>Mobile Number *</label>
-       <input type="text" id="mobileNumber" required>
-    </div>
-
-    <div class="form-group">
-        <label>Email *</label>
-       <input type="email" id="email" required>
-    </div>
-
-    <div class="form-group">
-        <label>Preferred Contact Method</label>
-<select id="contactMethod">
-            <option>Phone Call</option>
-            <option>WhatsApp</option>
-            <option>Email</option>
-        </select>
-    </div>
-
-</div>
-
-<br>
-
-<h3 class="section-title">Required Services</h3>
-
-<div class="checkbox-grid">
-
-    <label> <input type="checkbox" class="service" value="Sea Freight (LCL & FCL)"> Sea Freight (LCL & FCL) </label>
-    <label> <input type="checkbox" class="service" value="Air Freight"> Air Freight </label>
-    <label> <input type="checkbox" class="service" value="RoRo Services"> RoRo Services </label>
-    <label> <input type="checkbox" class="service" value="Custom Brokerage"> Custom Brokerage</label>
-       <label> <input type="checkbox" class="service" value=" Warehouse & Distribution"> Warehouse & Distribution</label>
-       <label> <input type="checkbox" class="service" value="Land Transport">Land Transport</label>
-       <label> <input type="checkbox" class="service" value="Relocation Services">Relocation Services</label>
-       <label> <input type="checkbox" class="service" value="Project Cargo / OOG Cargo">Project Cargo / OOG Cargo</label>
-       <label> <input type="checkbox" class="service" value=" Marine Insurance"> Marine Insurance</label>
- 	<label> <input type="checkbox" class="service" value="Other Logistic Services">Other Logistic Services</label>
-
-
-</div>
-
-<br>
-
-<h3 class="section-title">Shipment Details</h3>
-
-<div class="grid">
-
-    <div class="form-group">
-        <label>Shipment Type</label>
- <select id="shipmentType">
-    <option value="">Select Type</option>
-    <option>Import</option>
-    <option>Export</option>
-    <option>Domestic</option>
-</select>
-    </div>
-
-    <div class="form-group">
-        <label>Mode of Shipment</label>
-      <select id="shipmentMode">
-    <option value="">Select Mode</option>
-    <option value="FCL">Full Container Load (FCL)</option>
-    <option value="LCL">Less Container Load (LCL)</option>
-    <option value="Bulk">Bulk Cargo</option>
-    <option value="Air">Air Freight</option>
-</select>
-    </div>
-
-    <div class="form-group">
-        <label>Shipment Option</label>
-        <select id="shipmentOption">
-            <option>Select Mode First</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Commodity</label>
-        <select id="commoditySelect">
-            <option value="">Select Commodity</option>
-            <option>General Cargo</option>
-            <option>DG Cargo</option>
-            <option>Reefer Cargo</option>
-            <option value="Other">Other</option>
-        </select>
-    </div>
-
-</div>
-
-<div class="form-group" id="shipmentOtherBox" style="display:none;">
-    <label>Specify Shipment Details</label>
-   <input type="text" id="shipmentOther" placeholder="Enter details">
-</div>
-
-<div class="form-group" id="commodityOtherBox" style="display:none;">
-    <label>Specify Commodity</label>
-   <input type="text" id="commodityOther" placeholder="Enter commodity">
-</div>
-<div class="form-group" id="incotermsOtherBox" style="display:none;">
-    <label>Specify Incoterms</label>
-    <input type="text" id="incotermsOther" placeholder="Enter Incoterms">
-</div>
-
-<br>
-
-<div class="grid">
-
-    <div class="form-group">
-        <label>Incoterms</label>
-     <select id="incoterms">
-    <option value="EXW">EXW</option>
-    <option value="FOB">FOB</option>
-    <option value="CIF">CIF</option>
-    <option value="DAP">DAP</option>
-    <option value="DDP">DDP</option>
-    <option value="Others">Others</option>
-</select>
-    </div>
-
-</div>
-
-<h3 class="section-title">Additional Information</h3>
-
-<div class="form-group">
-    <label>Other Services</label>
-   <textarea rows="3" id="otherServices"></textarea>
-</div>
-
-<div class="form-group">
-    <label>Remark Message</label>
-   <textarea rows="5" id="remarkMessage"></textarea>
-</div>
-
-<div class="submit-area">
-   <button type="submit" class="submit-btn">
-        Submit Quotation Request
-    </button>
-</div>
-
-</form>
-
-<div class="footer-note">
-    © 2026 Interfreight Group. All Rights Reserved.
-</div>
+<div id="message"></div>
 
 </div>
 
 <script>
 
-const shipmentMode = document.getElementById("shipmentMode");
-const shipmentOption = document.getElementById("shipmentOption");
-const shipmentOtherBox = document.getElementById("shipmentOtherBox");
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwrYXNIm4cLZHV92LTix5e1Pj-11rlPbqVK5ONGi2yXy0vScSAqgngq73uctEv81pMt/exec";
 
-shipmentMode.addEventListener("change", function() {
+async function login(){
 
-    let options = "";
+const username = document.getElementById("username").value;
+const password = document.getElementById("password").value;
 
-    if(this.value === "FCL"){
-
-        options = `
-            <option value="">Select Container</option>
-            <option>20GP</option>
-            <option>20RF</option>
-            <option>40GP</option>
-            <option>40HQ</option>
-            <option>40RF</option>
-        `;
-
-    } else if(this.value === "LCL"){
-
-        options = `
-            <option value="">Select Option</option>
-            <option>Volume (cbm)</option>
-            <option>Weight (kgs)</option>
-            <option>Packing (ctn/pallet/crate)</option>
-            <option value="Other">Other</option>
-        `;
-
-    } else if(this.value === "Bulk"){
-
-        options = `
-            <option value="">Select Option</option>
-            <option>Volume (cbm)</option>
-            <option>Weight (kgs)</option>
-            <option>Packing (ctn/pallet/crate)</option>
-            <option value="Other">Other</option>
-        `;
-
-    } else if(this.value === "Air"){
-
-        options = `
-            <option value="">Select Option</option>
-            <option>Chargeable Weight</option>
-            <option>Actual Weight</option>
-            <option>Express Air Freight</option>
-            <option>Standard Air Freight</option>
-            <option value="Other">Other</option>
-        `;
-
-    } else {
-
-        options = `<option>Select Mode First</option>`;
-
-    }
-
-    shipmentOption.innerHTML = options;
-    shipmentOtherBox.style.display = "none";
+const response = await fetch(SCRIPT_URL, {
+method:"POST",
+body: JSON.stringify({
+action:"login",
+username:username,
+password:password
+})
 });
 
-shipmentOption.addEventListener("change", function(){
+const result = await response.json();
 
-    if(this.value === "Other"){
-        shipmentOtherBox.style.display = "block";
-    } else {
-        shipmentOtherBox.style.display = "none";
-    }
+if(result.success){
 
-});
+// SAVE SESSION
+localStorage.setItem(
+"currentUser",
+JSON.stringify(result)
+);
 
-const commoditySelect = document.getElementById("commoditySelect");
-const commodityOtherBox = document.getElementById("commodityOtherBox");
+// ROLE CHECK (ONLY IT CAN ENTER)
+if(result.role === "IT"){
 
-commoditySelect.addEventListener("change", function(){
+document.getElementById("message").innerHTML =
+"<div class='success'>Login Successful. Welcome " + result.fullName + "</div>";
 
-    if(this.value === "Other"){
-        commodityOtherBox.style.display = "block";
-    } else {
-        commodityOtherBox.style.display = "none";
-    }
+setTimeout(()=>{
+window.location.href="dashboard.html";
+},1000);
 
-});
-const incoterms = document.getElementById("incoterms");
-const incotermsOtherBox = document.getElementById("incotermsOtherBox");
+}else{
 
-incoterms.addEventListener("change", function(){
-
-    if(this.value === "Others"){
-        incotermsOtherBox.style.display = "block";
-    } else {
-        incotermsOtherBox.style.display = "none";
-    }
-
-});
-</script>
-<script>
-const WEBAPP_URL =
-"https://script.google.com/macros/s/AKfycbzPM6kphW2vCZX2qFuWIwYIwJ7rcPXjSODPeC9P7lzb-w5s5hWIe9ScEET3SsRJ8animQ/exec";
-
-document.getElementById("quotationForm").addEventListener("submit", async function(e){
-
-    e.preventDefault();
-
-    const services = [];
-
-    document.querySelectorAll(".service:checked").forEach(item=>{
-        services.push(item.value);
-    });
-
-    const data = {
-        company: document.getElementById("company").value,
-        title: document.getElementById("title").value,
-        contactPerson: document.getElementById("contactPerson").value,
-        mobileNumber: document.getElementById("mobileNumber").value,
-        email: document.getElementById("email").value,
-        contactMethod: document.getElementById("contactMethod").value,
-        services: services.join(", "),
-        shipmentType: document.getElementById("shipmentType").value,
-        shipmentMode: document.getElementById("shipmentMode").value,
-        shipmentOption: document.getElementById("shipmentOption").value,
-        shipmentOther: document.getElementById("shipmentOther").value,
-        commodity: document.getElementById("commoditySelect").value,
-        commodityOther: document.getElementById("commodityOther").value,
-        incoterms: document.getElementById("incoterms").value,
-         incotermsOther: document.getElementById("incotermsOther").value,
-        otherServices: document.getElementById("otherServices").value,
-        remarkMessage: document.getElementById("remarkMessage").value
-    };
-
-  try {
-
-    await fetch(WEBAPP_URL,{
-        method:"POST",
-        mode:"no-cors",
-        body:JSON.stringify(data)
-    });
-
-    alert("Quotation Request Submitted Successfully!");
-
-    document.getElementById("quotationForm").reset();
-
-} catch(error){
-
-    console.error(error);
-
-    alert("Submission Failed");
+document.getElementById("message").innerHTML =
+"<div class='error'>Access denied: IT role only</div>";
 
 }
-});
+
+}else{
+
+document.getElementById("message").innerHTML =
+"<div class='error'>Invalid Username or Password</div>";
+
+}
+
+}
+
 </script>
+
 </body>
 </html>
