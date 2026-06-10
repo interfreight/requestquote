@@ -237,8 +237,8 @@ textarea:focus{
        <label> <input type="checkbox" class="service" value="Land Transport">Land Transport</label>
        <label> <input type="checkbox" class="service" value="Relocation Services">Relocation Services</label>
        <label> <input type="checkbox" class="service" value="Project Cargo / OOG Cargo">Project Cargo / OOG Cargo</label>
-       <label> <input type="checkbox" class="service" value="Used Container Purchases">Used Container Purchases</label>
        <label> <input type="checkbox" class="service" value=" Marine Insurance"> Marine Insurance</label>
+ 	<label> <input type="checkbox" class="service" value="Other Logistic Services">Other Logistic Services</label>
 
 
 </div>
@@ -251,21 +251,23 @@ textarea:focus{
 
     <div class="form-group">
         <label>Shipment Type</label>
-  <select id="shipmentType">
-            <option value="">Select Type</option>
-            <option>Import</option>
-            <option>Export</option>
-        </select>
+ <select id="shipmentType">
+    <option value="">Select Type</option>
+    <option>Import</option>
+    <option>Export</option>
+    <option>Domestic</option>
+</select>
     </div>
 
     <div class="form-group">
         <label>Mode of Shipment</label>
-        <select id="shipmentMode">
-            <option value="">Select Mode</option>
-            <option value="FCL">Full Container Load (FCL)</option>
-            <option value="LCL">Less Container Load (LCL)</option>
-            <option value="Bulk">Bulk Cargo</option>
-        </select>
+      <select id="shipmentMode">
+    <option value="">Select Mode</option>
+    <option value="FCL">Full Container Load (FCL)</option>
+    <option value="LCL">Less Container Load (LCL)</option>
+    <option value="Bulk">Bulk Cargo</option>
+    <option value="Air">Air Freight</option>
+</select>
     </div>
 
     <div class="form-group">
@@ -297,6 +299,10 @@ textarea:focus{
     <label>Specify Commodity</label>
    <input type="text" id="commodityOther" placeholder="Enter commodity">
 </div>
+<div class="form-group" id="incotermsOtherBox" style="display:none;">
+    <label>Specify Incoterms</label>
+    <input type="text" id="incotermsOther" placeholder="Enter Incoterms">
+</div>
 
 <br>
 
@@ -304,13 +310,14 @@ textarea:focus{
 
     <div class="form-group">
         <label>Incoterms</label>
-      <select id="incoterms">
-            <option>EXW</option>
-            <option>FOB</option>
-            <option>CIF</option>
-            <option>DAP</option>
-            <option>DDP</option>
-        </select>
+     <select id="incoterms">
+    <option value="EXW">EXW</option>
+    <option value="FOB">FOB</option>
+    <option value="CIF">CIF</option>
+    <option value="DAP">DAP</option>
+    <option value="DDP">DDP</option>
+    <option value="Others">Others</option>
+</select>
     </div>
 
 </div>
@@ -382,6 +389,17 @@ shipmentMode.addEventListener("change", function() {
             <option value="Other">Other</option>
         `;
 
+    } else if(this.value === "Air"){
+
+        options = `
+            <option value="">Select Option</option>
+            <option>Chargeable Weight</option>
+            <option>Actual Weight</option>
+            <option>Express Air Freight</option>
+            <option>Standard Air Freight</option>
+            <option value="Other">Other</option>
+        `;
+
     } else {
 
         options = `<option>Select Mode First</option>`;
@@ -414,7 +432,18 @@ commoditySelect.addEventListener("change", function(){
     }
 
 });
+const incoterms = document.getElementById("incoterms");
+const incotermsOtherBox = document.getElementById("incotermsOtherBox");
 
+incoterms.addEventListener("change", function(){
+
+    if(this.value === "Others"){
+        incotermsOtherBox.style.display = "block";
+    } else {
+        incotermsOtherBox.style.display = "none";
+    }
+
+});
 </script>
 <script>
 const WEBAPP_URL =
